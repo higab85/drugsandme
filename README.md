@@ -13,7 +13,6 @@ cd ~/dev [or your preferred dev directory]
 git clone https://github.com/higab85/drugsandme-wagtail
 cd drugsandme-wagtail
 pip install -r requirements.txt
-python manage.py migrate
 python manage.py runserver
 ```
 The site should now be running on [localhost:8000](localhost:8000).
