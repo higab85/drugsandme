@@ -10,8 +10,8 @@ In order to get this up and running, I personally use [virtualenvwrapper](https:
 ```
 mkvirtualenv drugsandme
 cd ~/dev [or your preferred dev directory]
-git clone https://github.com/higab85/drugsandme-wagtail
-cd drugsandme-wagtail
+git clone https://github.com/higab85/drugsandme
+cd drugsandme
 pip install -r requirements.txt
 python manage.py runserver
 ```
