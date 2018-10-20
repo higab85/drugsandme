@@ -1,0 +1,9 @@
+*.pyc
+.DS_Store
+*.swp
+*/node_modules/
+*.zip
+.envrc
+db.sqlite3
+production.py
+zappa_settings.json

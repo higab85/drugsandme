@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block body_class %}template-404{% endblock %}
+
+{% block cover %}
+  <div  id="cover" class="cover theme-bg" style="background-color:#C6C9CE">
+
+    <div class="cover__elem cover__image">
+      <h1>404</h1>
+    </div>
+    <div class="cover__elem cover__text">
+      <h1>DRUG NOT FOUND </h1>
+      <h4>Oh no... What now?</h4>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="article row">
+  <div class="article__content article__elem">
+    <div id="intro" class="intro section">
+      <h3>You may have mistyped the URL!</h3>
+      <p> Use the menu above to find the page you're looking for.</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

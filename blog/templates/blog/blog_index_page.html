@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags blog_tags %}
+
+{% block cover %}
+  <div  id="cover" class="cover theme-bg">
+    <div class="cover__elem cover__image">
+      {% image page.cover_image original %}
+    </div>
+    <div class="cover__elem cover__text">
+      <h1>{{ page.translated_title }}</h1>
+      <h4>{{ page.sub_title }}</h4>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="article row">
+  <div class="article__content article__elem col-lg-9">
+    {% if class_type == "blogpage" %}
+      {% for post in entries %}
+      <div class="blog__post section">
+        {% with post=post.specific %}
+          <h2 class="blog__post__title"><a href="{% pageurl post %}">{{ post.title }}</a> - {{ post.publication_date }}</h2>
+          <h4 class="blog__post__title__date">{{ post.date }}</h4>
+
+          {% with post.main_image as main_image %}
+              {% if main_image %}{% image main_image fill-160x100 %}{% endif %}
+          {% endwith %}
+          {{ post.intro|richtext }}
+        {% endwith %}
+      </div>
+      {% endfor %}
+    {% elif class_type == "mention" %}
+      {% for post in entries %}
+      {% with post=post.specific %}
+        <div class="blog__post section">
+          {% image post.organisation_logo max-40x40 %}
+          <h2 class="blog__post__title"> {{ post.organisation_name }} - {{ post.publication_date }}</h2>
+          <h4 class="blog__post__title__date"> {{ post.author|richtext }} </h4>
+          <a href="{{ post.article_link }}">{{ post.title }}</a>
+          <p>{{ post.summary|richtext }}</p>
+        </div>
+        {% endwith %}
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="d-none d-lg-block col-md-3 article__sidebar article__elem d-print-none" role="complementary">
+    {% include "article/sidebar.html" %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags article_tags %}
+
+
+{% block cover %}
+  <div  id="cover" class="cover theme-bg">
+    <div class="cover__elem cover__image">
+      {% image page.cover_image original %}
+    </div>
+    <div class="cover__elem cover__text">
+      <h1>{{ page.translated_title }}</h1>
+      <h4>{{ page.sub_title }}</h4>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="article row">
+  <div class="article__content article__elem col-lg-9">
+    {%  article_constants as constants %}
+    {% if constants.campaign_caption|richtext %}
+      <div class="campaign boxed section">
+        {{ constants.campaign_caption|richtext }}
+      </div>
+    {% endif %}
+    <div id="intro" class="intro section">
+      {{ page.intro|richtext }}
+      <div class="things-to-take text-center">
+        {% for tip in page.things_to_take.all %}
+          <div class="things-to-take__element" title="Click me!">
+            <h2 class="things-to-take__element__counter theme-color">{{ forloop.counter }}</h2>
+            <h3 class="things-to-take__element__front-text">{{ tip.front_text }}</h3>
+            <p class="things-to-take__element__description d-none">
+              {{ tip.back_text }}
+            </p>
+          </div>
+        {% endfor %}
+      </div>
+      {{ page.intro_extras }}
+      {% for extra in page.intro_extras.all %}
+        {% include_block extra %}
+      {% endfor %}
+    </div>
+    {% for section in page.sections.all %}
+    <div class="section" id={{ section.section_id }}>
+      <h2 class="section__title">{{ section.section_name }}</h2>
+      <div class="section__content">
+        {{ section.section_content|richtext }}
+          {% include_block section.section_addons %}
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+  <div class="d-none d-lg-block col-md-3 article__sidebar article__elem d-print-none" role="complementary">
+    {% include "article/sidebar.html" %}
+  </div>
+</div>
+{% endblock %}

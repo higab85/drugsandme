@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags article_tags %}
+
+{% block body_class %} home-page {% endblock %}
+
+{% block cover %}
+
+<div class="theme-bg">
+  <div  id="cover" class="cover theme-bg">
+    <div id="index__title">
+      <div class="title__item" id="index__title__drugs">
+        <div class="title__button" id="index__title__drugs__button">
+          <div class="super-tip super-tip--left">
+            <h4 class="stronger-subheader"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> {{ page.title_tip_drugs}}</h4>
+          </div>
+          <h1 class="index__title__text standard-font">
+            <span style="color: #40AF81;">d</span><span style="color: #E97C39;">r</span><span style="color: #5898BB;">u</span><span style="color: #E48084;">g</span><span style="color: #C43830;">s</span>
+          </h1>
+        </div>
+        <div class="title__background" id="index__title__drugs-background"></div>
+        <div class="title__collapse title__collapse--left d-none" id="index__title__drugs-collapse">
+          {% drug_pages as drug_pages_v %}
+          {% for site in drug_pages_v %}
+              <a href="{{ site.specific.url }}">
+                <div class="index__menu__item" style="background-color:{{ site.specific.colour }}">
+                  <h4 class="standard-font index__collapse__item__text">{{ site.specific.title }}</h4>
+                </div>
+              </a>
+            {% empty %}
+              <a class="dropdown-item" href="#">no sites found</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div id="index__title-plus" class="title__item"><h1 class="standard-font">+</h1></div>
+      <div class="title__item" id="index__title__me">
+        <div class="title__button" id="index__title__me__button">
+          <div class="super-tip super-tip--right">
+            <h4 class="stronger-subheader">{{ page.title_tip_me}} <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></h4>
+          </div>
+          <h1 class="index__title__text standard-font">
+            me
+          </h1>
+        </div>
+        <div class="title__background" id="index__title__me-background"></div>
+        <div class="title__collapse title__collapse--right d-none" id="index__title__me-collapse">
+          {% me_pages as me_pages_v %}
+          {% for site in me_pages_v %}
+          <a href="{{ site.specific.url }}" style="background-color:{{ site.specific.colour }}">
+            <div class="index__menu__item">
+              <h4 class="standard-font index__collapse__item__text">{{ site.specific.title }}</h4>
+            </div>
+          </a>
+          {% empty %}
+            <a class="dropdown-item" href="#">no sites found</a>
+          {% endfor %}
+        </div>
+      </div>
+      <p class="title__lead lead">{{ page.title_lead | richtext }}</p>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block content %}
+  <div class="article__content section">
+    {% for section in page.index_sections.all %}
+      <div class="boxed-information index__article__box">
+        <h3 class="index-blurb__section__title">
+          {{ section.section_title }}
+        </h3>
+        <div class="index-blurb__section__content hidden-sm hidden-xs">
+          {{ section.section_content }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="harm-reduction__timeline row">
+  <div class="harm-reduction__timeline__elem harm-reduction__timeline__stage-titles col-md-3">
+    <div class="nav flex-md-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a id="v-pills-{{ value.title_1 }}-tab"
+        class="harm-reduction__timeline__stage__title nav-link active theme-bg"
+        data-toggle="pill" href="#v-pills-{{ value.title_1 }}"
+        role="tab"
+        aria-controls="v-pills-{{ value.title_1 }}"
+        aria-selected="true">
+          <h3>{{ value.title_1 }}</h3>
+      </a>
+      <a id="v-pills-{{ value.title_2 }}-tab"
+        class="harm-reduction__timeline__stage__title nav-link theme-bg"
+        data-toggle="pill"
+        href="#v-pills-{{ value.title_2 }}"
+        role="tab"
+        aria-controls="v-pills-{{ value.title_2 }}"
+        aria-selected="false">
+          <h3>{{ value.title_2 }}</h3>
+      </a>
+      <a id="v-pills-{{ value.title_3 }}-tab"
+        class="harm-reduction__timeline__stage__title nav-link theme-bg"
+        data-toggle="pill"
+        href="#v-pills-{{ value.title_3 }}"
+        role="tab"
+        aria-controls="v-pills-{{ value.title_3 }}"
+        aria-selected="true">
+          <h3>{{ value.title_3 }}</h3>
+      </a>
+    </div>
+  </div>
+  <div class="harm-reduction__timeline__elem harm-reduction__timeline__stage-descriptions col-md-9">
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" role="tabpanel" id="v-pills-{{ value.title_1 }}" aria-labelledby="v-pills-{{ value.title_1 }}-tab">
+        {{ value.content_1 }}
+      </div>
+      <div class="tab-pane fade" role="tabpanel" id="v-pills-{{ value.title_2 }}" aria-labelledby="v-pills-{{ value.title_2 }}-tab">
+        {{ value.content_2 }}
+      </div>
+      <div class="tab-pane fade" role="tabpanel" id="v-pills-{{ value.title_3 }}" aria-labelledby="v-pills-{{ value.title_3 }}-tab">
+        {{ value.content_3 }}
+      </div>
+    </div>
+  </div>
+</div>

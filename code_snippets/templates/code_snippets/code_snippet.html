@@ -1,0 +1,7 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="code-snippet">
+  {% for sample in value.code_samples %}
+    {{ sample }}
+  {% endfor %}
+</div>

@@ -1,0 +1,26 @@
+{% load wagtailcore_tags article_tags %}
+
+<nav id="sidebar" class="sidebar" >
+  <ul id="sidebar__contents" class="nav flex-column sidebar__contents">
+    {% for section in page.sections.all %}
+      <li class="nav-item sidebar__list__item sidebar__contents__item">
+        <a class="nav-link sidebar__list__item__link"
+            href={{ "#"|add:section.section_id }}>
+                    {{ section.section_name }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <ul class="nav flex-column sidebar__highlights">
+    {% highlights as highs %}
+    {% for highlight in  highs %}
+    <li class="nav-item sidebar__list__item sidebar__highlights__item"
+      style="background-color:{{ highlight.colour }}">
+      <a class="nav-link sidebar__list__item__link" href={{ highlight.link }}>
+        {{ highlight.name }}
+      </a>
+    </li>
+    {% endfor %}
+
+  </ul>
+</nav>

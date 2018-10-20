@@ -1,0 +1,42 @@
+{% load wagtailcore_tags wagtailimages_tags article_tags %}
+
+{%  article_constants as constants %}
+<div class="section__content">
+  <div class="interactions__interactive">
+    <div id="interactions__combo" class="row">
+      <div id="interactions__combo__addition" class="col-md-6">
+        <h3>{{ page.translated_title }} + <span id="interactions-combo-addition-temp">?</span> =</h3>
+          <div alt="dangerous to synergy bar" style="height:10px; width:100%; background: rgb(16,255,0);background: linear-gradient(90deg, rgba(16,255,0,1) 0%, rgba(255,250,0,1) 50%, rgba(255,0,0,1) 100%);"></div>
+      </div>
+      <div class="interactions__combo__result col-md-5">
+        <h3 class="interactions__combo__result__title">{{ constants.select_a_drug }} </h3>
+        <p class="interactions__combo__result__description">
+          {{ constants.no_drug_selected_text }} {{ page.translated_title }}.
+        </p>
+      </div>
+    </div>
+    <div id="interactions-table">
+      {% for interaction in value.interactions %}
+        <!-- {{ interaction.interaction_type.name }} -->
+        <a href="javascript:;" class="interactions-table__elem combo-not-active" style="background-color: {{ interaction.interaction_type.colour }}">
+          <p class="interaction-table__elem__interaction__name">{{ interaction.drug_name }}</p>
+          <div class="d-none interaction-table__elem__interaction">
+            <h4>{{ interaction.interaction_type }}</h4>
+            {% if interaction.description.source != "<p></p>" %}
+              {{ interaction.description }}
+            {% else %}
+              <p>
+                {{ interaction.interaction_type.default_description }}
+              </p>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    <p>
+      <small>
+      {{ constants.source }}: <a href="http://wiki.tripsit.me/images/3/3a/Combo_2.png">tripsit.me</a>
+    </small>
+    </p>
+  </div>
+</div>

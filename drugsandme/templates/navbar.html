@@ -1,0 +1,92 @@
+{% load static article_tags %}
+
+<!-- NAVBAR -->
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="/">
+      <img class="navbar-brand__logo d-none d-sm-block" src="{% static "images/DaM-logo-wide.png" %}" alt="">
+      <img class="navbar-brand__logo d-sm-none" src="{% static "images/DaM-brain-no-text.png" %}" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse my-2" id="navbarTogglerDemo02">
+      <div class="navbar__right ml-auto">
+        <ul class="navbar-nav mt-2 mt-lg-0">
+          <li class="navbar-item nav-item dropdown">
+            <a href="javascript:;" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              info
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% info_pages as info_pages_v %}
+              {% for site in info_pages_v %}
+                <a class="dropdown-item" href="{{ site.specific.url }}">{{ site.specific.title }}</a>
+              {% empty %}
+                <a class="dropdown-item" href="#">no sites found</a>
+              {% endfor %}
+            </div>
+          </li>
+          <li class="navbar-item nav-item dropdown">
+            <a href="javascript:;" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span style="color: #40AF81;">d</span><span style="color: #E97C39;">r</span><span style="color: #5898BB;">u</span><span style="color: #E48084;">g</span><span style="color: #C43830;">s</span>
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% drug_pages as drug_pages_v %}
+              {% for site in drug_pages_v %}
+                  <a class="dropdown-item" href="{{ site.specific.url }}">{{ site.specific.title }}</a>
+                {% empty %}
+                  <a class="dropdown-item" href="#">no sites found</a>
+              {% endfor %}
+            </div>
+          </li>
+          <li class="navbar-item nav-item dropdown">
+            <a href="javascript:;" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Me
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% me_pages as me_pages_v %}
+              {% for site in me_pages_v %}
+                  <a class="dropdown-item" href="{{ site.specific.url }}">{{ site.specific.title }}</a>
+                {% empty %}
+                  <a class="dropdown-item" href="#">no sites found</a>
+              {% endfor %}
+            </div>
+          </li>
+          <!-- <li class="navbar-item nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Language
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/en">English</a>
+              <a class="dropdown-item" href="/es">Español</a>
+            </div>
+          </li> -->
+        </ul>
+        <form class="navbar-item search form-inline my-2 my-lg-0">
+          <input class="search__input mr-sm-2" type="search" placeholder="Search">
+          <div class="search__results d-none dropdown-menu show">
+            {% all_pages as all_pages %}
+            {% for element in all_pages %}
+              <div class="search__results__item dropdown-item" style="background-color: {{ element.colour }}">
+                <a href="{{ element.url }}" class="search__results__item__link">{{ element.translated_title }}</a>
+                <ul class="d-none">
+                  {% filter lower %}
+                  <li class="tag">{{ element.translated_title }}</li>
+                  {% endfilter %}
+                  {% for name in element.related_names %}
+                    {% filter lower %}
+                    <li class="tag">{{ name }}</li>
+                    {% endfilter %}
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endfor %}
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </nav>

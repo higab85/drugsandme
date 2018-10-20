@@ -1,0 +1,10 @@
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{# TODO: make this image small #}
+<div class="brain-science">
+  <img src="{% static "images/icons/brain.png" %}" alt="nueroscience info toggle">
+  <span class="click-me-tip">{{ value.click_the_brain_text }}</span>
+  <div class="brain-science-content d-none" aria-label="scientific details">
+    {{ value.content }}
+  </div>
+</div>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block body_class %}template-500{% endblock %}
+
+{% block cover %}
+  <div  id="cover" class="cover theme-bg" style="background-color:#C6C9CE">
+
+    <div class="cover__elem cover__image">
+      <h1>500</h1>
+    </div>
+    <div class="cover__elem cover__text">
+      <h1>Something's not right...</h1>
+      <h4>Please come back in a bit</h4>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="article row">
+  <div class="article__content article__elem ">
+    <div id="intro" class="intro section">
+      <h3>Sorry!</h3>
+      <p>
+        We're currently fixing the site. It shouldn't take too long though,
+        so please come back later.
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
