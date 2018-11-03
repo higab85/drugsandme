@@ -184,6 +184,8 @@ body{
 
   #navbar{
     background-color: #f8f9fa !important;
+    position: fixed;
+    top: 0;
   }
 }
 
@@ -279,6 +281,10 @@ small{
   color: #8C8C8C;
   display: block;
 }
+
+.campaign{
+  text-align: center;
+}
 .cover__text h4{
   color: #fff;
   font-style: italic;
@@ -298,6 +304,7 @@ small{
   margin: 20px 10px 20px 10px;
   position: relative;
   vertical-align: middle;
+  cursor:pointer;
 }
 
 .things-to-take__element__counter{
@@ -306,7 +313,7 @@ small{
 }
 
 .things-to-take__element__description{
-  padding: 15px;
+  padding: 7px;
 }
 
 .things-to-take__element__front-text{
@@ -330,15 +337,21 @@ small{
   padding-bottom: 15px;
 }
 ul{
-  list-style-type:disc;
+  list-style-type:none;
 }
-#effects-positive > li{
+.effect-list--positive > li::before{
+  content: "⏶";
+  padding-right:7px;
   color: #26E224;
 }
-#effects-neutral > li{
+.effect-list--neutral > li::before{
+  content: "⏵";
+  padding-right:7px;
   color: #FBEA00;
 }
-#effects-negative > li{
+.effect-list--negative > li::before{
+  content: "⏷";
+  padding-right:7px;
   color: #E50000;
 }
 
@@ -470,6 +483,21 @@ ul{
 }
 
 // --- ARTICLE ends ---
+// --- BLOG starts ---
+
+.blog-post__return-button{
+  text-align: center;
+  margin-top: 80px;
+}
+
+.blog-post__return-button__link{
+  font-size: 23px;
+  color: black;
+  text-align: center;
+  padding: 7px;
+}
+
+// --- BLOG ends ---
 // --- SIDEBAR starts ---
 
 .article__sidebar{
@@ -520,10 +548,16 @@ ul{
   @extend %boxed;
 }
 
+.brain-science{
+  padding: 10px 0;
+}
+
 .brain-science img{
   @extend %boxed;
-  height: 70px;
+  height: 50px;
+  padding: 5px;
 }
+
 .brain-science-content{
   @extend %boxed;
   padding: 10px;
@@ -619,11 +653,12 @@ ul{
     border: 4px solid black;
     transition: background-color 0.1s;
     padding: 8px;
-    background-color: #c1c1c1;
+    // background-color: #c1c1c1;
   }
   .index__menu__item:hover {
     color: #fff;
-    background-color: #36434C;
+    transition: background-color 0.1s;
+    background-color: #36434C !important;
 
   }
   .title__lead{
@@ -720,7 +755,7 @@ ul{
     border: 0.5vw solid black;
     transition: background-color 0.1s;
     padding: 1vw;
-    background-color: #c1c1c1;
+    // background-color: #c1c1c1;
   }
   .index__menu__item:hover {
     color: #fff;
@@ -760,7 +795,6 @@ ul{
     height: 60px;
     background-color: $alt-bg;
     overflow: hidden;
-    position: absolute;
 }
 
 .footer__elem{

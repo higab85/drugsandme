@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .interactions-table__elem, .interactions__combo__result, .things-to-take__element, .harm-reduction__timeline__stage__title, .harm-reduction__timeline__stage-descriptions, .sidebar__list__item__link.active, .sidebar__highlights__item, .brain-science img, .brain-science-content {
   border: 2px solid black;
   background-color: #fff;
@@ -121,7 +122,9 @@ body {
     padding: 4vw;
     margin: 4vw; }
   #navbar {
-    background-color: #f8f9fa !important; } }
+    background-color: #f8f9fa !important;
+    position: fixed;
+    top: 0; } }
 
 @media (min-width: 576px) {
   .search__results {
@@ -186,6 +189,9 @@ small {
   color: #8C8C8C;
   display: block; }
 
+.campaign {
+  text-align: center; }
+
 .cover__text h4 {
   color: #fff;
   font-style: italic;
@@ -200,14 +206,15 @@ small {
   display: inline-block;
   margin: 20px 10px 20px 10px;
   position: relative;
-  vertical-align: middle; }
+  vertical-align: middle;
+  cursor: pointer; }
 
 .things-to-take__element__counter {
   font-size: 5em;
   padding-top: 15px; }
 
 .things-to-take__element__description {
-  padding: 15px; }
+  padding: 7px; }
 
 .things-to-take__element__front-text {
   margin-top: -15px; }
@@ -227,15 +234,21 @@ small {
   padding-bottom: 15px; }
 
 ul {
-  list-style-type: disc; }
+  list-style-type: none; }
 
-#effects-positive > li {
+.effect-list--positive > li::before {
+  content: "⏶";
+  padding-right: 7px;
   color: #26E224; }
 
-#effects-neutral > li {
+.effect-list--neutral > li::before {
+  content: "⏵";
+  padding-right: 7px;
   color: #FBEA00; }
 
-#effects-negative > li {
+.effect-list--negative > li::before {
+  content: "⏷";
+  padding-right: 7px;
   color: #E50000; }
 
 .effects > li > span {
@@ -336,6 +349,16 @@ ul {
 .side-note p {
   margin: 0; }
 
+.blog-post__return-button {
+  text-align: center;
+  margin-top: 80px; }
+
+.blog-post__return-button__link {
+  font-size: 23px;
+  color: black;
+  text-align: center;
+  padding: 7px; }
+
 .article__sidebar {
   padding-left: 20px;
   top: 0;
@@ -369,8 +392,12 @@ ul {
 .sidebar__highlights {
   padding-top: 20px; }
 
+.brain-science {
+  padding: 10px 0; }
+
 .brain-science img {
-  height: 70px; }
+  height: 50px;
+  padding: 5px; }
 
 .brain-science-content {
   padding: 10px; }
@@ -437,11 +464,11 @@ ul {
     display: inline-block;
     border: 4px solid black;
     transition: background-color 0.1s;
-    padding: 8px;
-    background-color: #c1c1c1; }
+    padding: 8px; }
   .index__menu__item:hover {
     color: #fff;
-    background-color: #36434C; }
+    transition: background-color 0.1s;
+    background-color: #36434C !important; }
   .title__lead {
     text-align: center; }
   .title__background {
@@ -507,8 +534,7 @@ ul {
     display: inline-block;
     border: 0.5vw solid black;
     transition: background-color 0.1s;
-    padding: 1vw;
-    background-color: #c1c1c1; }
+    padding: 1vw; }
   .index__menu__item:hover {
     color: #fff;
     background-color: #36434C; }
@@ -537,8 +563,7 @@ ul {
   width: 100%;
   height: 60px;
   background-color: #f5f5f5;
-  overflow: hidden;
-  position: absolute; }
+  overflow: hidden; }
 
 .footer__elem {
   padding: 10px 10px 0 10px; }
