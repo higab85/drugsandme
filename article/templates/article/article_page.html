@@ -6,7 +6,9 @@
 {% block cover %}
   <div  id="cover" class="cover theme-bg">
     <div class="cover__elem cover__image">
-      {% image page.cover_image max-300x300 %}
+      <div class="cover__image__container">
+        {% image page.cover_image max-300x300 %}
+      </div>
     </div>
     <div class="cover__elem cover__text">
       <h1>{{ page.translated_title }}</h1>

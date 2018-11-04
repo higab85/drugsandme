@@ -156,6 +156,12 @@ body {
   max-width: 300px;
   padding-top: 100px; }
 
+.cover__image__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px; }
+
 .cover__text {
   padding-left: 5%;
   margin-top: -50px;
