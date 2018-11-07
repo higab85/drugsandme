@@ -26,7 +26,7 @@
               {{ interaction.description }}
             {% else %}
               <p>
-                {{ interaction.interaction_type.default_description }}
+                {{ interaction.interaction_type.default_description | richtext }}
               </p>
             {% endif %}
           </div>
