@@ -18,19 +18,17 @@
     <div id="interactions-table">
       {% for interaction in value.interactions %}
         <!-- {{ interaction.interaction_type.name }} -->
-        <a href="javascript:;" class="interactions-table__elem combo-not-active" style="background-color: {{ interaction.interaction_type.colour }}">
+        <button href="javascript:;" class="interactions-table__elem combo-not-active" style="background-color: {{ interaction.interaction_type.colour }}">
           <p class="interaction-table__elem__interaction__name">{{ interaction.drug_name }}</p>
           <div class="d-none interaction-table__elem__interaction">
             <h4>{{ interaction.interaction_type }}</h4>
-            {% if interaction.description.source != "<p></p>" %}
-              {{ interaction.description }}
+            {% if interaction.description.source == "<p></p>" %}
+              {{ interaction.interaction_type.default_description|richtext }}
             {% else %}
-              <p>
-                {{ interaction.interaction_type.default_description | richtext }}
-              </p>
+              {{ interaction.description | richtext }}
             {% endif %}
           </div>
-        </a>
+        </button>
       {% endfor %}
     </div>
     <p>

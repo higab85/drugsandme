@@ -16,27 +16,9 @@ var $animationSpeed = 500;
    };
 })( jQuery );
 
-
-// add sticky-navbar after cover
-
-// // When the user scrolls the page, execute myFunction
-// window.onscroll = function() {myFunction()};
-
 // Get the header
 var header = document.getElementById("navbar");
 var article = document.getElementById("article");
-
-// // Get the offset position of the navbar
-// var sticky = article.offsetTop;
-//
-// // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-// function myFunction() {
-//   if (window.pageYOffset >= sticky) {
-//     header.classList.add("sticky-navbar");
-//   } else {
-//     header.classList.remove("sticky-navbar");
-//   }
-// }
 
 $(document).ready(function(){
 
@@ -209,12 +191,6 @@ $(document).ready(function(){
     $('#harm-reduction-stage-descriptions').parentSizeChecker();
   });
 
-  // Makes first drug in #interactions-combo-addition the current drug
-  // NOTE: Necessary?
-  // $('.theme-color').addClass( $currentDrug.toLowerCase());
-  // $('.theme-bg').addClass( $currentDrug.toLowerCase());
-
-
   // Gives each drug interaction their background colour depending on their
   // risk
   $('#interactions-table>a').each(function(){
@@ -227,12 +203,13 @@ $(document).ready(function(){
   // - makes selected drug background-color change to color
   // - adds new info to #interactions-combo
   $('#interactions-table').on("click", '.interactions-table__elem', function(){
+    console.log($(this).find('.interaction-table__elem__interaction p').text());
     $('.interactions-table__elem').addClass('combo-not-active');
     $('.interactions-table__elem.active').removeClass('active');
     $(this).removeClass('combo-not-active');
     $(this).addClass('active');
     $('#interactions-combo-addition-temp').text($(this).find('.interaction-table__elem__interaction__name').html());
-    $('.interactions__combo__result__title').html($(this).find('.interaction-table__elem__interaction').find('h4').text());
+    $('.interactions__combo__result__title').html($(this).find('.interaction-table__elem__interaction h4').text());
     $('.interactions__combo__result__description').html($(this).find('.interaction-table__elem__interaction').find('p').text());
   });
   // Deactivates an activated drug if it is clicked on.
@@ -270,19 +247,4 @@ $(document).ready(function(){
       $(this).parent().find('.brain-science-content').toggleClass('d-none');
       $(this).parent().find('.click-me-tip').toggleClass('d-none');
     })
-    // end navbar buttons
-
-    // clickable elements' tooltips
-    // $('.tooltips').tooltip();
-//------------------ front page bottom buttons ------------------------------
-
-  // $('.home-button').click(function(){
-  //   $('p', this).toggleClass('d-none');
-  //   $(this).siblings().find('p').addClass('d-none');
-  // })
-
-//   $('#home-buttons a').click(function (e) {
-//   e.preventDefault()
-//   $(this).tab('show')
-// })
 });

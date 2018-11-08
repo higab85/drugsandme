@@ -43,3 +43,10 @@ def me_pages():
 @register.simple_tag
 def article_constants():
     return ArticleConstants.objects.first()
+
+
+@register.filter
+def pdb(element):
+    import pdb
+    pdb.set_trace()
+    return element

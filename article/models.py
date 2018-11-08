@@ -258,6 +258,7 @@ class Interaction(StructBlock):
     class Meta:
         abstract = True
 
+
 class Interactions(StructBlock):
     interactions = ListBlock(Interaction)
 
