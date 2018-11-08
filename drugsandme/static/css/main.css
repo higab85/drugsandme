@@ -170,7 +170,7 @@ body {
 
 .interactions-table__elem {
   display: inline-block;
-  min-width: 120px;
+  width: 130px;
   margin: 5px 1px 1px 1px; }
 
 .interactions-table__elem p {
