@@ -829,3 +829,13 @@ ul{
     width: 100%;
   }
 }
+
+// ------------
+// dirty fixes
+// ------------
+
+// youtube videos added in richtext editor has a padding bottom added to style
+// this ignores it
+.responsive-object {
+    padding-bottom: 0 !important;
+}
