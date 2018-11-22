@@ -23,6 +23,15 @@
         {# Global stylesheets #}
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-73235857-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'UA-73235857-1', {'anonymize-ip': true });
+        </script>
+
 
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
         <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
@@ -39,61 +48,9 @@
               "text": "#4b81e8",
               "border": "#4b81e8"
             }
-          },
-          "type": "opt-in",
-          onInitialise: function (status) {
-        		var type = this.options.type;
-        		var didConsent = this.hasConsented();
-        		if (type == 'opt-in' && didConsent) {
-        			// enable cookies
-              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-              ga('create', 'UA-73235857-1', 'auto');
-              ga('send', 'pageview');
-        		}
-      		},
-
-      		onStatusChange: function(status, chosenBefore) {
-        		var type = this.options.type;
-        		var didConsent = this.hasConsented();
-        		if (type == 'opt-in' && didConsent) {
-        			// enable cookies
-              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-              ga('create', 'UA-73235857-1', 'auto');
-              ga('send', 'pageview');
-        		}
-      		},
-      		onRevokeChoice: function() {
-          		var type = this.options.type;
-          		if (type == 'opt-in') {
-          			// disable cookies
-        				clearCookie('_ga','.drugsand.me','/');
-        				clearCookie('_gat_gtag_UA_73235857-1','.drugsand.me','/');
-        				clearCookie('_gid','.drugsand.me','/');
-        				// Get an array of cookies
-        				var arrSplit = document.cookie.split(";");
-        				for(var i = 0; i < arrSplit.length; i++)
-        				{
-        					var cookie = arrSplit[i].trim();
-        					var cookieName = cookie.split("=")[0];
-        					// If the prefix of the cookie's name matches the one specified, remove it
-        					if(cookieName.indexOf("ssupp.") === 0) {
-        						// Remove the cookie
-        						document.cookie = cookieName + "=; Max-Age=-99999999;";
-        					}
-        				}
-        			}
-        		},
+          }
         })});
         </script>
-
 
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
