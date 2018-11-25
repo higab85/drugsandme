@@ -209,13 +209,14 @@ class FooterLink(models.Model):
     class Meta:
         verbose_name_plural = 'Footer links'
 
+
 @register_snippet
 class InteractionType(models.Model):
 
     name = TranslatedField()
     name_en, name_es = name.init(
         models.CharField,
-        ('name_en','name_es'),
+        ('name_en', 'name_es'),
         max_length=50, blank=True, default="")
 
     default_description = TranslatedField()
@@ -223,7 +224,6 @@ class InteractionType(models.Model):
         RichTextField,
         ('default_description_en', 'default_description_es'),
         max_length=300, blank=True)
-
 
     colour = ColorField(default='#6c6c6c')
 
@@ -280,7 +280,6 @@ class EffectsBlock(StructBlock):
         template = "article/effects.html"
 
 
-
 class TableOfThree(StructBlock):
     title_1 = CharBlock(max_length=10, blank=True)
     content_1 = RichTextBlock(blank=True)
@@ -292,12 +291,16 @@ class TableOfThree(StructBlock):
     class Meta:
         template = "article/table.html"
 
+
 class BrainTip(StructBlock):
-    click_the_brain_text = CharBlock(max_length=255, blank=True, default="Click the brain for neuro-info!")
+    click_the_brain_text = CharBlock(max_length=255,
+                                     blank=True,
+                                     default="Click the brain for neuro-info!")
     content = RichTextBlock(blank=True)
 
     class Meta:
         template = "article/brain-tip.html"
+
 
 class SideNote(StructBlock):
     content = RichTextBlock()
@@ -305,8 +308,9 @@ class SideNote(StructBlock):
     class Meta:
         template = "article/side-note.html"
 
+
 class Section (models.Model):
-    section_name =  models.CharField(max_length=50, blank=True)
+    section_name = models.CharField(max_length=50, blank=True)
     section_content = RichTextField(blank=True)
 
     section_addons = StreamField([
@@ -327,6 +331,7 @@ class Section (models.Model):
         FieldPanel('section_content'),
         StreamFieldPanel('section_addons')
     ]
+
     @property
     def section_id(self):
         return self.section_name.replace(" ", "-")
@@ -334,12 +339,14 @@ class Section (models.Model):
     class Meta:
         abstract = True
 
+
 class ArticleSectionEN(Orderable, Section):
     article = ParentalKey(
         'ArticlePage',
         related_name='sections_en',
         on_delete=models.CASCADE
     )
+
 
 class ArticleSectionES(Orderable, Section):
     article = ParentalKey(
@@ -351,8 +358,8 @@ class ArticleSectionES(Orderable, Section):
 
 class ThingToTake(models.Model):
 
-    front_text  = models.CharField(max_length=20, blank=True)
-    back_text   = models.CharField(max_length=175, blank=True)
+    front_text = models.CharField(max_length=20, blank=True)
+    back_text = models.CharField(max_length=175, blank=True)
     panels = [
         FieldPanel('front_text'),
         FieldPanel('back_text'),
@@ -361,6 +368,7 @@ class ThingToTake(models.Model):
     class Meta:
         abstract = True
 
+
 class ArticleTipsEN(Orderable, ThingToTake):
 
     tips = ParentalKey(
@@ -368,6 +376,7 @@ class ArticleTipsEN(Orderable, ThingToTake):
         related_name='things_to_take_en',
         on_delete=models.CASCADE
     )
+
 
 class ArticleTipsES(Orderable, ThingToTake):
 
@@ -401,7 +410,6 @@ class ArticlePage(Page):
         ('intro_en', 'intro_es'),
         blank=True)
 
-
     colour = ColorField(default='#6c6c1c')
     categories = ParentalManyToManyField('article.ArticleCategory')
     cover_image = models.ForeignKey(
@@ -426,7 +434,6 @@ class ArticlePage(Page):
     intro_extras = StreamField([
         ('code_snippet', CodeSnippetBlock("code_snippets.CodeSnippet"))
     ], blank=True)
-
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
@@ -462,9 +469,9 @@ class ArticlePage(Page):
         ObjectList(content_panels, heading='EN Content'),
         ObjectList(es_content_panels, heading='ES content'),
         ObjectList(Page.promote_panels, heading='Promote'),
-        ObjectList(Page.settings_panels, heading='Settings', classname="settings"),
+        ObjectList(Page.settings_panels, heading='Settings',
+                   classname="settings"),
     ])
-
 
     search_fields = Page.search_fields + [
         index.SearchField('title_en'),
@@ -473,6 +480,7 @@ class ArticlePage(Page):
         index.SearchField('sub_title_es'),
 
     ]
+
     def __str__(self):
         return self.title
 
@@ -480,7 +488,7 @@ class ArticlePage(Page):
     sections.init(None, ('sections_en', 'sections_es'))
 
     things_to_take = TranslatedField()
-    things_to_take.init(None, ('things_to_take_en','things_to_take_es'))
+    things_to_take.init(None, ('things_to_take_en', 'things_to_take_es'))
 
     @property
     def related_names(self):

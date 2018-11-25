@@ -2,6 +2,7 @@
 
 from django.db import migrations
 
+
 # https://stackoverflow.com/questions/41931590/data-migration-of-image-model
 def forward_func(apps, schema_editor):
     wagtail_image_model = apps.get_model('wagtailimages', 'Image')
@@ -15,6 +16,7 @@ def forward_func(apps, schema_editor):
             tags=image.tags,
         ))
     new_image_model.objects.using(db_alias).bulk_create(new_images)
+
 
 def reverse_func(apps, schema_editor):
     # We get the model from the versioned app registry;
