@@ -7,7 +7,7 @@ DEBUG = True
 SECRET_KEY = "7_@yl@!*7agyry-vg9ca5)e36eyympo0lcs+0=+%!etb!&6gj-"
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ['www.drugsand.me', 'drugsand.me', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ["*"]
 
 
 DATABASES = {
