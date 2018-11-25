@@ -1,44 +1,65 @@
 from django import template
-from article.models import Highlight, SocialMedia, FooterLink, ArticlePage, ArticleConstants
+from article.models import (Highlight, SocialMedia, FooterLink, ArticlePage,
+                            ArticleConstants, Page)
 from django.utils.translation import get_language
 
 register = template.Library()
+
 
 @register.simple_tag
 def highlights():
     return Highlight.objects.all()
 
+
 @register.simple_tag
 def social_media():
     return SocialMedia.objects.all()
 
+
 @register.simple_tag
 def footer_links():
-    links = list(list(FooterLink.objects.order_by('name_' + get_language()[:2])))
+    links = list(list(FooterLink.objects
+                      .order_by('name_' + get_language()[:2])))
     return links
+
 
 @register.simple_tag
 def all_pages():
     return filtered_articles()
 
+
 def filtered_articles(category=None):
-    articles = list(ArticlePage.objects.order_by('title_' + get_language()[:2]).live())
+    articles = list(ArticlePage.objects
+                    .order_by('title_' + get_language()[:2])
+                    .live())
     if category:
-        articles = filter(lambda x: x.categories.first().name == category,  articles)
+        articles = filter(lambda x: x.categories.first().name == category,
+                          articles)
     return list(articles)
+
+
+def pages_in_folder(folder_name):
+    pages = list(Page.objects.order_by('title'))
+    folder = list(filter(lambda x: x.title == folder_name, pages))[0]
+    pages_in_folder = filter(lambda x: x.is_child_of(folder),  pages)
+    live_pages_in_folder = filter(lambda x: x.live, list(pages_in_folder))
+    return list(live_pages_in_folder)
 
 
 @register.simple_tag
 def drug_pages():
-    return filtered_articles(category="Drug")
+    return pages_in_folder("Drugs")
+
 
 @register.simple_tag
 def info_pages():
-    return filtered_articles(category="Info")
+    return pages_in_folder("Info")
+
 
 @register.simple_tag
 def me_pages():
-    return filtered_articles(category="Me")
+    return pages_in_folder("Me")
+
 
 @register.simple_tag
 def article_constants():
