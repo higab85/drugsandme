@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'blog',
     'article',
     'code_snippets',
+    'images',
 
     'colorfield',
     'wagtail.contrib.styleguide', # stylise admin
@@ -194,3 +195,5 @@ BASE_URL = 'http://example.com'
 
 
 INSTALLED_APPS += ('zappa_django_utils',)
+
+WAGTAILIMAGES_IMAGE_MODEL = 'images.CustomImage'
