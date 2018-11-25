@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags image_tags %}
+
+{% block cover %}
+  <div  id="cover" class="cover theme-bg">
+    <div class="cover__elem cover__image">
+      {% image page.cover_image original %}
+    </div>
+    <div class="cover__elem cover__text">
+      <h1>{{ page.translated_title }}</h1>
+      <h4>{{ page.sub_title }}</h4>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="article row">
+  <div class="article__content article__elem col-lg-9">
+    <div class="row">
+    {% partners as images %}
+      {% for imagen in images %}
+      <div class="col-2">
+        <a href="{{ imagen.URL }}">
+          <div class="text-center">
+            {% image imagen width-200 %}
+            <p>{{ imagen.title }}</p>
+          </div>
+
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="d-none d-lg-block col-md-3 article__sidebar article__elem d-print-none" role="complementary">
+    {% include "article/sidebar.html" %}
+  </div>
+</div>
+
+{% endblock %}

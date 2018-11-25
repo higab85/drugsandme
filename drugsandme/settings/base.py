@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'article',
     'code_snippets',
     'images',
+    'partners',
 
     'colorfield',
     'wagtail.contrib.styleguide',  # stylise admin
