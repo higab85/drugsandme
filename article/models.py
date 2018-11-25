@@ -1,7 +1,9 @@
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.blocks import StructBlock, FieldBlock, ListBlock, CharBlock, RichTextBlock
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.core.blocks import (StructBlock, ListBlock, CharBlock,
+                                 RichTextBlock)
+from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
+                                         MultiFieldPanel, StreamFieldPanel)
 from django.db import models
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.snippets.models import register_snippet
@@ -12,13 +14,13 @@ from wagtail.search import index
 from django import forms
 from django.utils import translation
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
-from rest_framework.fields import ListField
 from code_snippets.models import CodeSnippetBlock
 
 
 class TranslatedField:
     en_field = ""
     es_field = ""
+
     def init(self, field_type, var_names, **kwargs):
         self.en_field = var_names[0]
         self.es_field = var_names[1]
@@ -33,31 +35,31 @@ class TranslatedField:
         else:
             return getattr(instance, self.en_field)
 
+
 @register_snippet
 class ArticleConstants(models.Model):
     select_a_drug = TranslatedField()
-    select_a_drug_en, select_a_drug_es  = select_a_drug.init(
+    select_a_drug_en, select_a_drug_es = select_a_drug.init(
         models.CharField,
         ('select_a_drug_en', 'select_a_drug_es'),
         max_length=30, blank=True)
 
-
     no_drug_selected_text = TranslatedField()
-    no_drug_selected_text_en, no_drug_selected_text_es =no_drug_selected_text.init(
+    no_drug_selected_text_en, no_drug_selected_text_es = no_drug_selected_text.init(
         models.CharField,
-        ('no_drug_selected_text_en','no_drug_selected_text_es'),
+        ('no_drug_selected_text_en', 'no_drug_selected_text_es'),
         max_length=255, blank=True)
 
     source = TranslatedField()
     source_en, source_es = source.init(
         models.CharField,
-        ('source_en','source_es'),
+        ('source_en', 'source_es'),
         max_length=15, blank=True)
 
     campaign_caption = TranslatedField()
     campaign_caption_en, campaign_caption_es = campaign_caption.init(
         RichTextField,
-        ('campaign_caption_en','campaign_caption_es'),
+        ('campaign_caption_en', 'campaign_caption_es'),
         blank=True)
 
     panels = [
@@ -88,7 +90,7 @@ class ArticleCategory(models.Model):
     name = TranslatedField()
     name_en, name_es = name.init(
         models.CharField,
-        ('name_en','name_es'),
+        ('name_en', 'name_es'),
         max_length=255, blank=True)
 
     icon = models.ForeignKey(
@@ -142,7 +144,7 @@ class Highlight(models.Model):
     name = TranslatedField()
     name_en, name_es = name.init(
         models.CharField,
-        ('name_en','name_es'),
+        ('name_en', 'name_es'),
         max_length=50, blank=True, default="")
 
     link = TranslatedField()
@@ -170,6 +172,7 @@ class Highlight(models.Model):
         ObjectList(panels, heading='EN Content'),
         ObjectList(panels_es, heading='ES content'),
     ])
+
     class Meta:
         verbose_name_plural = 'Highlights'
 
@@ -179,7 +182,7 @@ class FooterLink(models.Model):
     name = TranslatedField()
     name_en, name_es = name.init(
         models.CharField,
-        ('name_en','name_es'),
+        ('name_en', 'name_es'),
         max_length=50, blank=True, default="")
 
     link = TranslatedField()
