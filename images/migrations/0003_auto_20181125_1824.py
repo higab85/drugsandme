@@ -11,9 +11,19 @@ def forward_func(apps, schema_editor):
     new_images = []
     for image in wagtail_image_model.objects.all():
         new_images.append(new_image_model(
+            id=image.id,
             title=image.title,
             file=image.file,
-            tags=image.tags,
+            width=image.width,
+            height=image.height,
+            created_at=image.created_at,
+            focal_point_x=image.focal_point_x,
+            focal_point_y=image.focal_point_y,
+            focal_point_width=image.focal_point_width,
+            focal_point_height=image.focal_point_height,
+            file_size=image.file_size,
+            collection=image.collection,
+            uploaded_by_user=image.uploaded_by_user,
         ))
     new_image_model.objects.using(db_alias).bulk_create(new_images)
 

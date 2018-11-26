@@ -22,10 +22,9 @@
     <div class="row">
     {% partners as images %}
       {% for imagen in images %}
-      <div class="col-2">
-        <a href="{{ imagen.URL }}">
-          <div class="text-center">
-            {% image imagen width-200 %}
+      <div class="">
+          <div class="text-center partners-logos">
+            {% image imagen height-120 %}
             <p>{{ imagen.title }}</p>
           </div>
 

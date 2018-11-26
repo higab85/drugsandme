@@ -8,7 +8,7 @@ register = template.Library()
 def partners():
     partners = []
     for image in all_images():
-        if "illustration" in image.tags.names():
+        if "partner" in image.tags.names():
             partners.append(image)
     return partners
 

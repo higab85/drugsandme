@@ -6,6 +6,10 @@ from django.utils.translation import get_language
 register = template.Library()
 
 
+@register.filter
+def dir(thing):
+    return thing.__dir__()
+
 @register.simple_tag
 def highlights():
     return Highlight.objects.all()

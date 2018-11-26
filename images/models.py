@@ -4,11 +4,11 @@ from wagtail.images.models import Image, AbstractImage, AbstractRendition
 
 class CustomImage(AbstractImage):
 
-    URL = models.URLField(blank=True)
+    link = models.URLField(blank=True)
     description = models.TextField(blank=True)
 
     admin_form_fields = Image.admin_form_fields + (
-        'URL',
+        'link',
         'description',
     )
 
