@@ -779,11 +779,14 @@ ul{
     margin: 10px;
   }
 }
-
-.partners-logos img{
+.partner{
+  margin: 0 auto;
+  padding: 15px 10px;
+}
+.partner__logo img{
   margin: 0 10px;
 }
-.partners-logos{
+.partner__logo{
   text-align: center;
   height: 200px;
 }

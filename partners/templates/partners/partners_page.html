@@ -5,7 +5,7 @@
 {% block cover %}
   <div  id="cover" class="cover theme-bg">
     <div class="cover__elem cover__image">
-      {% image page.cover_image original %}
+      {% image page.cover_image max-300x300 %}
     </div>
     <div class="cover__elem cover__text">
       <h1>{{ page.translated_title }}</h1>
@@ -21,13 +21,13 @@
   <div class="article__content article__elem col-lg-9">
     <div class="row">
     {% partners as images %}
-      {% for imagen in images %}
-      <div class="">
-          <div class="text-center partners-logos">
-            {% image imagen height-120 %}
-            <p>{{ imagen.title }}</p>
+      {% for image in images %}
+      <div class="partner">
+        <a href="{{ image.link }}">
+          <div class="text-center partner__logos">
+            {% image image height-120 %}
+            <p>{{ image.title }}</p>
           </div>
-
         </a>
       </div>
       {% endfor %}
