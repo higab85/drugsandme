@@ -6,9 +6,21 @@ from django.utils.translation import get_language
 register = template.Library()
 
 
-@register.filter
-def dir(thing):
-    return thing.__dir__()
+@register.simple_tag
+def cookie_banner():
+    constants = article_constants()
+
+    class CookieBanner:
+        message = None
+        button = None
+        link = None
+
+    cookie_banner = CookieBanner()
+    cookie_banner.message = constants.cookie_banner_message
+    cookie_banner.button = constants.cookie_banner_button
+    cookie_banner.link = constants.cookie_banner_link
+    return cookie_banner
+
 
 @register.simple_tag
 def highlights():
@@ -75,3 +87,8 @@ def pdb(element):
     import pdb
     pdb.set_trace()
     return element
+
+
+@register.filter
+def dir(thing):
+    return thing.__dir__()

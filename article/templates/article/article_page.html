@@ -46,16 +46,15 @@
         {% include_block extra %}
       {% endfor %}
     </div>
-    {% for section in page.sections.all %}
-    <div class="section" id={{ section.section_id }}>
-      <h2 class="section__title">{{ section.section_name }}</h2>
-      <div class="section__content">
-        {{ section.section_content|richtext }}
-          {% include_block section.section_addons %}
+      {% for section in page.sections.all %}
+      <div class="section" id={{ section.section_id }}>
+        <h2 class="section__title">{{ section.section_name }}</h2>
+        <div class="section__content">
+          {{ section.section_content|richtext }}
+            {% include_block section.section_addons %}
+        </div>
       </div>
-    </div>
-    {% endfor %}
-
+      {% endfor %}
   </div>
   <div class="d-none d-lg-block col-md-3 article__sidebar article__elem d-print-none" role="complementary">
     {% include "article/sidebar.html" %}

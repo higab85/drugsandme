@@ -62,11 +62,34 @@ class ArticleConstants(models.Model):
         ('campaign_caption_en', 'campaign_caption_es'),
         blank=True)
 
+    cookie_banner_message = TranslatedField()
+    cookie_banner_message_en, cookie_banner_message_es = cookie_banner_message.init(
+        models.TextField,
+        ('cookie_banner_message_en', 'cookie_banner_message_es'),
+        blank=True)
+
+    cookie_banner_button = TranslatedField()
+    cookie_banner_button_en, cookie_banner_button_es = cookie_banner_button.init(
+        models.TextField,
+        ('cookie_banner_button_en', 'cookie_banner_button_es'),
+        blank=True)
+
+    cookie_banner_link = TranslatedField()
+    cookie_banner_link_en, cookie_banner_link_es = cookie_banner_link.init(
+        models.URLField,
+        ('cookie_banner_link_en', 'cookie_banner_link_es'),
+        blank=True)
+
     panels = [
         FieldPanel('select_a_drug_en'),
         FieldPanel('no_drug_selected_text_en'),
         FieldPanel('source_en'),
         FieldPanel('campaign_caption_en'),
+        FieldPanel('cookie_banner_message_en'),
+        FieldPanel('cookie_banner_button_en'),
+        FieldPanel('cookie_banner_link_en')
+
+
 
     ]
     panels_es = [
@@ -74,6 +97,12 @@ class ArticleConstants(models.Model):
         FieldPanel('no_drug_selected_text_es'),
         FieldPanel('source_es'),
         FieldPanel('campaign_caption_es'),
+        FieldPanel('cookie_banner_message_es'),
+        FieldPanel('cookie_banner_button_es'),
+        FieldPanel('cookie_banner_link_es')
+
+
+
     ]
     edit_handler = TabbedInterface([
         ObjectList(panels, heading='EN Content'),
@@ -407,6 +436,12 @@ class ArticlePage(Page):
         ('sub_title_en', 'sub_title_es'),
         max_length=255, blank=True)
 
+    blurb = TranslatedField()
+    blurb_en, blurb_es = blurb.init(
+        RichTextField,
+        ('blurb_en', 'blurb_es'),
+        blank=True)
+
     intro = TranslatedField()
     intro_en, intro_es = intro.init(
         RichTextField,
@@ -442,6 +477,7 @@ class ArticlePage(Page):
         MultiFieldPanel([
             FieldPanel("seo_title_en"),
             FieldPanel("seo_description_en"),
+            FieldPanel("blurb_en"),
         ], heading="Promote"),
         MultiFieldPanel([
             FieldPanel('title_en'),
@@ -460,6 +496,7 @@ class ArticlePage(Page):
         MultiFieldPanel([
             FieldPanel("seo_title_es"),
             FieldPanel("seo_description_es"),
+            FieldPanel("blurb_es"),
         ], heading="Promote"),
         FieldPanel('title_es'),
         FieldPanel('sub_title_es'),

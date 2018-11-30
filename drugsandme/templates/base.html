@@ -48,7 +48,23 @@
               "text": "#4b81e8",
               "border": "#4b81e8"
             }
-          }
+          },
+            {% cookie_banner as cookie_bannerv %}
+            {% if cookie_bannerv %}
+            "content": {
+              {% endif %}
+              {% if cookie_bannerv.message %}
+                "message": "{{ cookie_bannerv.message }}",
+              {% endif %}
+
+              {% if cookie_bannerv.button %}
+                "dismiss": "{{ cookie_bannerv.button }}",
+              {% endif %}
+
+              {% if cookie_bannerv.link %}
+                "link": "{{ cookie_bannerv.link }}"
+              {% endif %}
+            }
         })});
         </script>
 

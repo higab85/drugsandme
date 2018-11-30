@@ -779,13 +779,16 @@ ul{
     margin: 10px;
   }
 }
-
-.partners-logos img{
-  height: 120px;
-  padding: 0 10px;
+.partner{
+  margin: 0 auto;
+  padding: 15px 10px;
 }
-.partners-logos{
+.partner__logo img{
+  margin: 0 10px;
+}
+.partner__logo{
   text-align: center;
+  height: 200px;
 }
 .index__article__box{
   background-color: $alt-bg;
@@ -1036,6 +1039,9 @@ background-color: #FF6600
   border-color: #1DA851;
 }
 
+.cc-message>p {
+    display: inline;
+}
 
 
 // ------------
