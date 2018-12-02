@@ -80,6 +80,12 @@ class ArticleConstants(models.Model):
         ('cookie_banner_link_en', 'cookie_banner_link_es'),
         blank=True)
 
+    default_share_blurb = TranslatedField()
+    default_share_blurb_en, default_share_blurb_es = default_share_blurb.init(
+        models.TextField,
+        ('default_share_blurb_en', 'default_share_blurb_es'),
+        blank=True)
+
     panels = [
         FieldPanel('select_a_drug_en'),
         FieldPanel('no_drug_selected_text_en'),
