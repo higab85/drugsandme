@@ -1,10 +1,9 @@
 from wagtail.core.fields import RichTextField
 from django.db import models
-
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
-
 from wagtail.core.models import Page, Orderable
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
+                                         MultiFieldPanel)
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -14,9 +13,7 @@ from django import forms
 from article.models import TranslatedField
 from colorfield.fields import ColorField
 from django.utils import translation
-from operator import itemgetter, attrgetter, methodcaller
-
-
+from operator import attrgetter
 
 
 # Retreive snippets: blog.models.BlogCategory.objects.all()
@@ -50,6 +47,10 @@ class Mention(Page):
         FieldPanel('summary'),
     ]
 
+    def get_sitemap_urls(self):
+        return []
+
+
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
@@ -69,12 +70,14 @@ class BlogCategory(models.Model):
     class Meta:
         verbose_name_plural = 'blog categories'
 
+
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
         'BlogPage',
         related_name='tagged_items',
         on_delete=models.CASCADE
     )
+
 
 @register_snippet
 class BlogPageLanguage(models.Model):
@@ -93,6 +96,7 @@ class BlogPageLanguage(models.Model):
     class Meta:
         verbose_name_plural = 'blog languages'
 
+
 class BlogPage(Page):
     sub_title = models.CharField(max_length=255, blank=True)
     publication_date = models.DateField("Post date")
@@ -110,8 +114,6 @@ class BlogPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-
-
 
     def main_image(self):
         gallery_item = self.gallery_images.first()
@@ -154,8 +156,11 @@ class BlogTagIndexPage(Page):
         context['blogpages'] = blogpages
         return context
 
+
 class BlogPageGalleryImage(Orderable):
-    page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='gallery_images')
+    page = ParentalKey(BlogPage,
+                       on_delete=models.CASCADE,
+                       related_name='gallery_images')
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
     )
@@ -197,17 +202,21 @@ class BlogIndexPage(Page):
         FieldPanel('colour'),
     ]
 
-
     def get_context(self, request):
-        # Update context to include only published posts, ordered by reverse-chron
+        # Update context to include only published posts, ordered by
+        # reverse-chron
         context = super().get_context(request)
         entries = self.get_children().live()
         specific_entries = list(map(lambda x: x.specific, entries))
         if type(specific_entries[0]) == BlogPage:
-            specific_entries = filter(lambda x: x.language.first().lang_code == translation.get_language()[:2], specific_entries)
+            specific_entries = filter(
+                lambda x: x.language.first().lang_code ==
+                translation.get_language()[:2], specific_entries)
             context['class_type'] = 'blogpage'
         else:
             context['class_type'] = 'mention'
-        sorted_entries = sorted(specific_entries, key=attrgetter("publication_date"), reverse=True)
+        sorted_entries = sorted(specific_entries,
+                                key=attrgetter("publication_date"),
+                                reverse=True)
         context['entries'] = sorted_entries
         return context
