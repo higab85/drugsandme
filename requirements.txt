@@ -29,7 +29,6 @@ l18n==2016.6.4
 lambda-packages==0.20.0
 Pillow==5.2.0
 placebo==0.8.1
-psycopg2==2.7.5
 psycopg2-binary==2.7.5
 python-dateutil==2.6.1
 python-slugify==1.2.4
