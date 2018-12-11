@@ -256,7 +256,7 @@ body{
 
 .interactions-table__elem p{
   text-align: center;
-  margin: 0.3rem;
+  margin: 0.3rem 0rem;
   color: #000;
 }
 
@@ -345,17 +345,17 @@ ul{
   list-style-type:none;
 }
 .effect-list--positive > li::before{
-  content: "⏶";
+  content: "⬆️";
   padding-right:7px;
   color: #26E224;
 }
 .effect-list--neutral > li::before{
-  content: "⏵";
+  content: "➡️";
   padding-right:7px;
-  color: #FBEA00;
+  color: orange;
 }
 .effect-list--negative > li::before{
-  content: "⏷";
+  content: "⬇️";
   padding-right:7px;
   color: #E50000;
 }
@@ -441,6 +441,24 @@ ul{
    margin-left: -10px;
    height: 80px;
   }
+
+  .harm-reduction__timeline__stage__title{
+    width: 23vw;
+    font-size: 1em;
+  }
+  .harm-reduction__timeline__stage__title>h3{
+    font-size: 7vw;
+  }
+  .interactions__combo__result{
+    margin: 20px auto;
+  }
+  #interactions-table{
+    text-align: center;
+  }
+
+  .home-page .theme-bg {
+    height: 370px;
+}
 }
 
 @media (min-width: 768px) {
