@@ -17,7 +17,7 @@ django-taggit==0.23.0
 django-treebeard==4.3
 djangorestframework==3.8.2
 docutils==0.14
-draftjs-exporter==2.1.2
+draftjs-exporter<3.0,>=2.1.5
 durationpy==0.5
 future==0.16.0
 hjson==3.0.1
@@ -44,7 +44,7 @@ tqdm==4.19.1
 troposphere==2.3.1
 Unidecode==0.4.21
 urllib3==1.23
-wagtail==2.3
+wagtail==2.4
 webencodings==0.5.1
 Werkzeug==0.14.1
 Willow==1.1
