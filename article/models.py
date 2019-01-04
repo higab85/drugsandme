@@ -305,13 +305,11 @@ class Interactions(StructBlock):
 
 
 class EffectsBlock(StructBlock):
-    positive_effects = ListBlock(CharBlock())
+    # var names "positive_effects", "neutral_effects", "negative_effects"
+    # cannot be used as they reference older variables in the StreamField
+    # This is messy, but I can't figure out how to fix it.
     positive_effects_new = RichTextBlock(blank=True)
-
-    neutral_effects = ListBlock(CharBlock())
     neutral_effects_new = RichTextBlock(blank=True)
-
-    negative_effects = ListBlock(CharBlock())
     negative_effects_new = RichTextBlock(blank=True)
 
     class Meta:

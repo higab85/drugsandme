@@ -1,18 +1,12 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 
-<ul class="effect-list effect-list--positive">
-  {% for effect in value.positive_effects %}
-      <li>{{ effect }}</li>
-  {% endfor %}
-</ul>
-<ul class="effect-list effect-list--neutral">
-  {% for effect in value.neutral_effects %}
-      <li>{{ effect }}</li>
-  {% endfor %}
-</ul>
-<ul class="effect-list effect-list--negative">
-  {% for effect in value.negative_effects %}
-      <li>{{ effect }}</li>
-  {% endfor %}
-</ul>
+<div class="effect-list effect-list--positive">
+  {{ value.positive_effects_new }}
+</div>
+<div class="effect-list effect-list--neutral">
+  {{ value.neutral_effects_new }}
+</div>
+<div class="effect-list effect-list--negative">
+  {{ value.negative_effects_new }}
+</div>

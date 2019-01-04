@@ -242,17 +242,17 @@ small {
 ul {
   list-style-type: none; }
 
-.effect-list--positive > li::before {
+.effect-list--positive li::before {
   content: "⬆️";
   padding-right: 7px;
   color: #26E224; }
 
-.effect-list--neutral > li::before {
+.effect-list--neutral li::before {
   content: "➡️";
   padding-right: 7px;
   color: orange; }
 
-.effect-list--negative > li::before {
+.effect-list--negative li::before {
   content: "⬇️";
   padding-right: 7px;
   color: #E50000; }
