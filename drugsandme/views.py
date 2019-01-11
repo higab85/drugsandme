@@ -25,6 +25,9 @@ def mdma(page):
 def modafinil(page):
     return redirect("/" + translation.get_language() + "/drugs/modafinil")
 
+def alcohol(page):
+    return redirect("/" + translation.get_language() + "/drugs/alcohol")
+
 
 
 def english():

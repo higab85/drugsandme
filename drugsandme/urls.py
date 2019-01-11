@@ -25,25 +25,26 @@ urlpatterns = [
     url('^sitemap\.xml$', sitemap),
     # path('<slug>.html', views.drugs),
 
-    path('cannabis', views.cannabis),
-    path('en/cannabis', views.cannabis),
+    path('cannabis/', views.cannabis),
+    path('en/cannabis/', views.cannabis),
 
-    path('cocaine', views.cocaine),
-    path('en/cocaine', views.cocaine),
+    path('cocaine/', views.cocaine),
+    path('en/cocaine/', views.cocaine),
 
-    path('ketamine', views.ketamine),
-    path('en/ketamine', views.ketamine),
+    path('ketamine/', views.ketamine),
+    path('en/ketamine/', views.ketamine),
 
-    path('lsd', views.lsd),
-    path('en/lsd', views.lsd),
+    path('lsd/', views.lsd),
+    path('en/lsd/', views.lsd),
 
-    path('mdma', views.mdma),
-    path('en/mdma', views.mdma),
+    path('mdma/', views.mdma),
+    path('en/mdma/', views.mdma),
 
-    path('modafinil', views.modafinil),
-    path('en/modafinil', views.modafinil),
+    path('modafinil/', views.modafinil),
+    path('en/modafinil/', views.modafinil),
 
-
+    path('alcohol/', views.alcohol),
+    path('en/alcohol/', views.alcohol),
 
     # # For anything not caught by a more specific rule above, hand over to
     # # Wagtail's page serving mechanism. This should be the last pattern in
