@@ -15,7 +15,7 @@ from django import forms
 from django.utils import translation
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from code_snippets.models import CodeSnippetBlock
-
+from images.models import CustomImage
 
 class TranslatedField:
     en_field = ""
@@ -129,7 +129,7 @@ class ArticleCategory(models.Model):
         max_length=255, blank=True)
 
     icon = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
+        CustomImage, null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
 
@@ -344,6 +344,38 @@ class SideNote(StructBlock):
     class Meta:
         template = "article/side-note.html"
 
+@register_snippet
+class TeamMemberDetails(models.Model):
+
+    name = models.CharField(max_length=50)
+    profile_picture = models.ForeignKey(
+        CustomImage,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    panels = [
+        FieldPanel('name'),
+        ImageChooserPanel('profile_picture')
+    ]
+    def __str__(self):
+        return self.name
+
+class TeamMember(StructBlock):
+    position = CharBlock(max_length=100, blank=True)
+    details = SnippetChooserBlock("article.TeamMemberDetails")
+    class Meta:
+        abstract = True
+
+
+class TeamMembers(StructBlock):
+    group_name = CharBlock(max_length=50, blank=True)
+    members = ListBlock(TeamMember)
+
+    class Meta:
+        template = "article/team-members.html"
+
 
 class Section (models.Model):
     section_name = models.CharField(max_length=50, blank=True)
@@ -356,7 +388,8 @@ class Section (models.Model):
         ('interactions', Interactions()),
         ('brain_tip', BrainTip()),
         ('side_note', SideNote()),
-        ('code', CodeSnippetBlock("code_snippets.CodeSnippet"))
+        ('code', CodeSnippetBlock("code_snippets.CodeSnippet")),
+        ('team_members', TeamMembers()),
         # ('effects', EffectsBlock(icon="fa-stethoscope")),
         # ('content', RichTextBlock(blank=True, icon="fa-paragraph")),
         # ('table_of_three', TableOfThree(icon="fa-the-list")),
@@ -390,7 +423,6 @@ class ArticleSectionES(Orderable, Section):
         related_name='sections_es',
         on_delete=models.CASCADE
     )
-
 
 class ThingToTake(models.Model):
 
@@ -455,7 +487,7 @@ class ArticlePage(Page):
     colour = ColorField(default='#6c6c1c')
     categories = ParentalManyToManyField('article.ArticleCategory')
     cover_image = models.ForeignKey(
-        'wagtailimages.Image',
+        CustomImage,
         null=True,
         # blank=True,
         on_delete=models.SET_NULL,
