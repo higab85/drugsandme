@@ -310,6 +310,11 @@ small{
   padding-top: 50px;
 }
 
+.team-card {
+  display: inline-block;
+  width: 300px;
+  padding: 20px;
+}
 
 .things-to-take__element{
   @extend %boxed;

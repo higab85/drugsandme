@@ -1,0 +1,12 @@
+{% load wagtailcore_tags wagtailimages_tags article_tags %}
+
+
+<div class="team-group">
+  <h3>{{ value.group_name }}</h3>
+  {% for member in value.members %}
+  <div class="team-card">
+    {% image member.details.profile_picture max-80x80 %}
+    <h5>{{ member.details.name }}<small>{{ member.position }}</small></h5>
+  </div>
+  {% endfor %}
+</div>

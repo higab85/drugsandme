@@ -206,6 +206,11 @@ small {
 .article__elem {
   padding-top: 50px; }
 
+.team-card {
+  display: inline-block;
+  width: 300px;
+  padding: 20px; }
+
 .things-to-take__element {
   width: 200px;
   height: 200px;
