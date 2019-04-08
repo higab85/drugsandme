@@ -60,6 +60,11 @@ class IndexBlurbES(Orderable, IndexSection):
 
 class HomePage(Page):
 
+        def serve(self, request):
+        translation.activate("en")
+        # request.LANGUAGE_CODE = "en"
+        return super().serve(request)
+
     title_tip_drugs = TranslatedField()
     title_tip_drugs_en, title_tip_drugs_es = title_tip_drugs.init(
         models.CharField,
