@@ -425,6 +425,20 @@ class ArticleTipsES(Orderable, ThingToTake):
 
 class ArticlePage(Page):
 
+    preview_modes = [('', 'English'), ('Spanish', 'Spanish')]
+
+    def serve_preview(self, request, mode_name):
+        if (mode_name == 'Spanish'):
+            translation.activate("es")
+        print(translation.get_language())
+        return super().serve(request)
+
+    
+    def serve(self, request):
+        translation.activate("en")
+        # request.LANGUAGE_CODE = "en"
+        return super().serve(request)
+
     translated_title = TranslatedField()
     title_en, title_es = translated_title.init(
         models.CharField,
