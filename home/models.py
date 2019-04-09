@@ -60,7 +60,7 @@ class IndexBlurbES(Orderable, IndexSection):
 
 class HomePage(Page):
 
-        def serve(self, request):
+    def serve(self, request):
         translation.activate("en")
         # request.LANGUAGE_CODE = "en"
         return super().serve(request)
