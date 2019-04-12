@@ -9,6 +9,8 @@ from wagtail.admin.edit_handlers import (FieldPanel, StreamFieldPanel,
                                          ObjectList)
 from modelcluster.fields import ParentalKey
 from article.models import TranslatedField
+from django.utils import translation
+
 
 
 class Partner(StructBlock):
