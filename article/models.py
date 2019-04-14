@@ -16,14 +16,17 @@ from django.utils import translation
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from code_snippets.models import CodeSnippetBlock
 from images.models import CustomImage
+from django.http import Http404
 
 class TranslatedField:
     en_field = ""
     es_field = ""
 
     def init(self, field_type, var_names, **kwargs):
+
         self.en_field = var_names[0]
         self.es_field = var_names[1]
+    
         if field_type is not None:
             lang_en = field_type(**kwargs)
             lang_es = field_type(**kwargs)
@@ -115,43 +118,10 @@ class ArticleConstants(models.Model):
         ObjectList(panels_es, heading='ES content'),
     ])
 
+
     def __str__(self):
         return "Article constants"
 
-
-@register_snippet
-class ArticleCategory(models.Model):
-
-    name = TranslatedField()
-    name_en, name_es = name.init(
-        models.CharField,
-        ('name_en', 'name_es'),
-        max_length=255, blank=True)
-
-    icon = models.ForeignKey(
-        CustomImage, null=True, blank=True,
-        on_delete=models.SET_NULL, related_name='+'
-    )
-
-    panels = [
-        FieldPanel('name_en'),
-        ImageChooserPanel('icon'),
-    ]
-
-    panels_es = [
-        FieldPanel('name_es'),
-    ]
-
-    edit_handler = TabbedInterface([
-        ObjectList(panels, heading='EN Content'),
-        ObjectList(panels_es, heading='ES content'),
-    ])
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name_plural = 'article categories'
 
 
 @register_snippet
@@ -467,8 +437,8 @@ class ArticlePage(Page):
 
     
     def serve(self, request):
-        translation.activate("en")
-        # request.LANGUAGE_CODE = "en"
+        if ( not self.is_published ):
+            raise Http404("Not implemented yet!", translation.get_language())
         return super().serve(request)
 
     translated_title = TranslatedField()
@@ -479,6 +449,13 @@ class ArticlePage(Page):
 
     def get_title():
         return str(translated_title)
+
+    is_published = TranslatedField()
+    is_published_en, is_published_es = is_published.init(
+        models.BooleanField,
+        ('is_published_en', 'is_published_es'),
+        blank=True, default=False)
+
 
     sub_title = TranslatedField()
     sub_title_en, sub_title_es = sub_title.init(
@@ -499,7 +476,6 @@ class ArticlePage(Page):
         blank=True)
 
     colour = ColorField(default='#6c6c1c')
-    categories = ParentalManyToManyField('article.ArticleCategory')
     cover_image = models.ForeignKey(
         CustomImage,
         null=True,
@@ -528,13 +504,13 @@ class ArticlePage(Page):
             FieldPanel("seo_title_en"),
             FieldPanel("seo_description_en"),
             FieldPanel("blurb_en"),
+            FieldPanel("is_published_en"),
         ], heading="Promote"),
         MultiFieldPanel([
             FieldPanel('title_en'),
             FieldPanel('sub_title_en'),
             FieldPanel('colour'),
             ImageChooserPanel('cover_image'),
-            FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         ], heading="Cover"),
         FieldPanel('intro_en'),
         InlinePanel('things_to_take_en', label="Things to take"),
@@ -547,6 +523,7 @@ class ArticlePage(Page):
             FieldPanel("seo_title_es"),
             FieldPanel("seo_description_es"),
             FieldPanel("blurb_es"),
+            FieldPanel("is_published_es"),
         ], heading="Promote"),
         FieldPanel('title_es'),
         FieldPanel('sub_title_es'),

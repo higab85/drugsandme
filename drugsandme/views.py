@@ -1,5 +1,6 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.utils import translation
+from django.template.loader import get_template
 
 default_language="en"
 
@@ -32,3 +33,11 @@ def alcohol(page):
 
 def english():
     return redirect("/en")
+
+
+def error_404_view(request, exception):
+    if (exception.args[0] == "Not implemented yet!"):
+      return render(request, exception.args[1] + '-not_implemented-404.html')
+    else:
+      return render(request,'404.html')
+

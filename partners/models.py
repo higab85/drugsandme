@@ -13,7 +13,7 @@ from wagtail.search import index
 
 # Create your models here.
 class PartnersPage(Page):
-
+        
         translated_title = TranslatedField()
         title_en, title_es = translated_title.init(
             models.CharField,

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block body_class %}template-404{% endblock %}
+
+{% block cover %}
+  <div  id="cover" class="cover theme-bg" style="background-color:#C6C9CE">
+
+    <div class="cover__elem cover__image">
+      <h1>404</h1>
+    </div>
+    <div class="cover__elem cover__text">
+      <h1>Falta poco...</h1>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="article row">
+  <div class="article__content article__elem">
+    <div id="intro" class="intro section">
+      <p>
+        Desgraciadamente, todavía no hemos terminado de traducir este contenido... ): 
+        Traducir contenido de este tipo lleva tiempo y mucho esfuerzo. No sólo queremos que 
+        el contenido sea científico, también queremos que la información sea accesible para 
+        tod@s l@s hispano hablantes.
+      </p>
+      <p>
+        Si te gusta el trabajo que estamos haciendo, por favor considera donar. La mayoría 
+        de nuestras donaciones son de 5 libras/dólares/euros, pulsa en el siguiente enlace 
+        para ayudarnos: <a href="/es/info/donate">donación</a>.
+      </p>
+      <p>
+        Si te has quedado con ganas de leer sobre el tema que estabas buscando, por favor
+        dirígete a <a href="/en">nuestra versión en inglés</a>.
+      </p>
+      
+    </div>
+  </div>
+</div>
+
+{% endblock %}

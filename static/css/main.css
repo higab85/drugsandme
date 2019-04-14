@@ -175,7 +175,7 @@ body {
 
 .interactions-table__elem p {
   text-align: center;
-  margin: 0.3rem;
+  margin: 0.3rem 0rem;
   color: #000; }
 
 h1 {
@@ -205,6 +205,11 @@ small {
 
 .article__elem {
   padding-top: 50px; }
+
+.team-card {
+  display: inline-block;
+  width: 300px;
+  padding: 20px; }
 
 .things-to-take__element {
   width: 200px;
@@ -242,18 +247,18 @@ small {
 ul {
   list-style-type: none; }
 
-.effect-list--positive > li::before {
-  content: "⏶";
+.effect-list--positive li::before {
+  content: "⬆️";
   padding-right: 7px;
   color: #26E224; }
 
-.effect-list--neutral > li::before {
-  content: "⏵";
+.effect-list--neutral li::before {
+  content: "➡️";
   padding-right: 7px;
-  color: #FBEA00; }
+  color: orange; }
 
-.effect-list--negative > li::before {
-  content: "⏷";
+.effect-list--negative li::before {
+  content: "⬇️";
   padding-right: 7px;
   color: #E50000; }
 
@@ -319,7 +324,18 @@ ul {
     background-color: #6B7A87; }
   .harm-reduction-stage-indicator.active {
     margin-left: -10px;
-    height: 80px; } }
+    height: 80px; }
+  .harm-reduction__timeline__stage__title {
+    width: 23vw;
+    font-size: 1em; }
+  .harm-reduction__timeline__stage__title > h3 {
+    font-size: 7vw; }
+  .interactions__combo__result {
+    margin: 20px auto; }
+  #interactions-table {
+    text-align: center; }
+  .home-page .theme-bg {
+    height: 370px; } }
 
 @media (min-width: 768px) {
   .harm-reduction__timeline__stage__titles {
@@ -369,6 +385,7 @@ ul {
   padding-left: 20px;
   top: 0;
   background-color: #E6EBF1;
+  position: -webkit-sticky;
   position: sticky;
   right: 0;
   height: 103vh; }
@@ -596,7 +613,16 @@ ul {
   .footer__elem {
     text-align: center;
     margin: 0 auto;
-    width: 100%; } }
+    width: 100%; }
+  li {
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    list-style-position: inside; } }
 
 .resp-sharing-button__link,
 .resp-sharing-button__icon {
@@ -760,8 +786,17 @@ ul {
   background-color: #1DA851;
   border-color: #1DA851; }
 
-.cc-message > p {
-  display: inline; }
-
 .responsive-object {
-  padding-bottom: 0 !important; }
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden; }
+
+.responsive-object iframe,
+.responsive-object object,
+.responsive-object embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }

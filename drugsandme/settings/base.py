@@ -148,10 +148,10 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        # 'django': {
-        #     'handlers': ['console'],
-        #     'level': 'DEBUG',
-        # },
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
     }
 }
 

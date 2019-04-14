@@ -53,14 +53,19 @@ def filtered_articles(category=None):
                           articles)
     return list(articles)
 
+def is_live_or_not(page):
+    if page.specific_class == ArticlePage:
+        return page.live and page.specific.is_published
+    else:
+        return page.live
+
 
 def pages_in_folder(folder_name):
     pages = list(Page.objects.order_by('title'))
     folder = list(filter(lambda x: x.title == folder_name, pages))[0]
     pages_in_folder = filter(lambda x: x.is_child_of(folder),  pages)
-    live_pages_in_folder = filter(lambda x: x.live, list(pages_in_folder))
+    live_pages_in_folder = filter(lambda x: is_live_or_not(x), list(pages_in_folder))
     return list(live_pages_in_folder)
-
 
 @register.simple_tag
 def drug_pages():
