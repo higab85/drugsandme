@@ -36,8 +36,11 @@ def english():
 
 
 def error_404_view(request, exception):
+    response = None
     if (exception.args[0] == "Not implemented yet!"):
-      return render(request, exception.args[1] + '-not_implemented-404.html')
+      response = render(request, exception.args[1] + '-not_implemented-404.html')
     else:
-      return render(request,'404.html')
+      response = render(request,'404.html')
+    response.status_code = 404
+    return response
 
