@@ -10,6 +10,7 @@ from wagtail.admin.edit_handlers import (FieldPanel, StreamFieldPanel,
 from modelcluster.fields import ParentalKey
 from article.models import TranslatedField
 from django.utils import translation
+from code_snippets.models import CodeSnippetBlock
 
 
 
@@ -29,6 +30,7 @@ class IndexSection (models.Model):
     section_content = StreamField([
         ('text', RichTextBlock()),
         ('partners', ListBlock(Partner())),
+        ('code_snippet', CodeSnippetBlock("code_snippets.CodeSnippet"))
         ], blank=True)
 
     panels = [

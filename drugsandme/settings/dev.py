@@ -2,7 +2,7 @@ from .base import *
 from django.utils.translation import gettext_lazy as _
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 SECRET_KEY = "7_@yl@!*7agyry-vg9ca5)e36eyympo0lcs+0=+%!etb!&6gj-"
 
