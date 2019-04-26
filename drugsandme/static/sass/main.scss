@@ -411,6 +411,8 @@ ul{
   font-family: $alt-font;
   color: #000;
   opacity: 0.5;
+    text-align: center;
+    padding: .5rem 0rem !important;
 }
 .harm-reduction__timeline__stage__title.active{
   opacity: 1;

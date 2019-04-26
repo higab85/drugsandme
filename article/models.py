@@ -429,6 +429,12 @@ class ArticlePage(Page):
 
     preview_modes = [('', 'English'), ('Spanish', 'Spanish')]
 
+    # def get_sitemap_urls(self, request = None):
+    #     if (self.is_published):
+    #         return super().get_sitemap_urls()
+    #     else:
+    #         return []
+
     def serve_preview(self, request, mode_name):
         if (mode_name == 'Spanish'):
             translation.activate("es")

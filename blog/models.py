@@ -47,7 +47,7 @@ class Mention(Page):
         FieldPanel('summary'),
     ]
 
-    def get_sitemap_urls(self):
+    def get_sitemap_urls(self, request=None):
         return []
 
 

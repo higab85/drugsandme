@@ -327,7 +327,9 @@ ul {
     height: 80px; }
   .harm-reduction__timeline__stage__title {
     width: 23vw;
-    font-size: 1em; }
+    font-size: 1em;
+    text-align: center;
+    padding: .5rem 0rem !important; }
   .harm-reduction__timeline__stage__title > h3 {
     font-size: 7vw; }
   .interactions__combo__result {
