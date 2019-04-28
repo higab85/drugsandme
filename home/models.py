@@ -69,6 +69,13 @@ class HomePage(Page):
     #     # request.LANGUAGE_CODE = "en"
     #     return super().serve(request)
 
+    def get_sitemap_urls(self, request = None):
+        pages = []
+        for language in translation.trans_real.settings.LANGUAGES:
+            translation.activate(language[0])
+            pages.append(super().get_sitemap_urls()[0])
+        return pages
+
     title_tip_drugs = TranslatedField()
     title_tip_drugs_en, title_tip_drugs_es = title_tip_drugs.init(
         models.CharField,

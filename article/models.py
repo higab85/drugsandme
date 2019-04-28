@@ -429,11 +429,13 @@ class ArticlePage(Page):
 
     preview_modes = [('', 'English'), ('Spanish', 'Spanish')]
 
-    # def get_sitemap_urls(self, request = None):
-    #     if (self.is_published):
-    #         return super().get_sitemap_urls()
-    #     else:
-    #         return []
+    def get_sitemap_urls(self, request = None):
+        pages = []
+        for language in translation.trans_real.settings.LANGUAGES:
+            translation.activate(language[0])
+            if self.is_published:
+                pages.append(super().get_sitemap_urls()[0])
+        return pages
 
     def serve_preview(self, request, mode_name):
         if (mode_name == 'Spanish'):
