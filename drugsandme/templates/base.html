@@ -15,9 +15,13 @@
                 {% endif %}
             {% endblock %}
         </title>
-        {% if self.translated_seo_description %}
-          <meta name="description" content="{{ self.translated_seo_description }}" />
-        {% endif %}
+          <meta name="description" content="
+          {% if self.translated_seo_description %}
+            {{ self.translated_seo_description }}
+          {% else %}
+            {{ self.search_description }}
+          {% endif %}
+        " />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}

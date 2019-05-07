@@ -13,7 +13,7 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3'
+        'NAME': '/home/squid/Documents/projects/drugsandme/wagtail-dnme/drugsandmeIVAN/db.sqlite3'
     }
 
 }
