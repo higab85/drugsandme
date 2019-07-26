@@ -14,6 +14,7 @@ from article.models import TranslatedField
 from colorfield.fields import ColorField
 from django.utils import translation
 from operator import attrgetter
+from images.models import CustomImage
 
 
 # Retreive snippets: blog.models.BlogCategory.objects.all()
@@ -108,7 +109,7 @@ class BlogPage(Page):
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
 
     cover_image = models.ForeignKey(
-        'wagtailimages.Image',
+        CustomImage,
         null=True,
         # blank=True,
         on_delete=models.SET_NULL,
