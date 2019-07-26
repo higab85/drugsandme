@@ -28,7 +28,7 @@ class Mention(Page):
     summary = RichTextField()
 
     organisation_logo = models.ForeignKey(
-        'wagtailimages.Image',
+        CustomImage,
         null=True,
         on_delete=models.SET_NULL,
         related_name='+'
@@ -56,7 +56,7 @@ class Mention(Page):
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
     icon = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
+        CustomImage, null=True, blank=True,
         on_delete=models.SET_NULL, related_name='+'
     )
 
@@ -163,7 +163,7 @@ class BlogPageGalleryImage(Orderable):
                        on_delete=models.CASCADE,
                        related_name='gallery_images')
     image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
+        CustomImage, on_delete=models.CASCADE, related_name='+'
     )
     caption = models.CharField(blank=True, max_length=250)
 
@@ -175,7 +175,7 @@ class BlogPageGalleryImage(Orderable):
 
 class BlogIndexPage(Page):
     cover_image = models.ForeignKey(
-        'wagtailimages.Image',
+        CustomImage,
         null=True,
         # blank=True,
         on_delete=models.SET_NULL,
