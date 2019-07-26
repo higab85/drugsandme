@@ -356,7 +356,7 @@ small{
   padding-top: 30px;
   padding-bottom: 15px;
 }
-ul{
+.effect-list ul{
   list-style-type:none;
 }
 .effect-list--positive li::before{
@@ -411,6 +411,8 @@ ul{
   font-family: $alt-font;
   color: #000;
   opacity: 0.5;
+    text-align: center;
+    padding: .5rem 0rem !important;
 }
 .harm-reduction__timeline__stage__title.active{
   opacity: 1;
@@ -460,8 +462,6 @@ ul{
   .harm-reduction__timeline__stage__title{
     width: 23vw;
     font-size: 1em;
-    text-align: center;
-    padding: .5rem 0rem !important;
   }
   .harm-reduction__timeline__stage__title>h3{
     font-size: 7vw;
