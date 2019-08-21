@@ -194,9 +194,17 @@ class BlogIndexPage(Page):
         ('sub_title_en', 'sub_title_es'),
         max_length=255, blank=True)
 
+    is_published = TranslatedField()
+    is_published_en, is_published_es = is_published.init(
+        models.BooleanField,
+        ('is_published_en', 'is_published_es'),
+        blank=True, default=False)
+
     content_panels = Page.content_panels + [
         FieldPanel('title_en'),
+        FieldPanel("is_published_en"),
         FieldPanel('title_es'),
+        FieldPanel("is_published_es"),
         FieldPanel('sub_title_en'),
         FieldPanel('sub_title_es'),
         ImageChooserPanel('cover_image'),
@@ -212,7 +220,7 @@ class BlogIndexPage(Page):
         if type(specific_entries[0]) == BlogPage:
             specific_entries = filter(
                 lambda x: x.language.first().lang_code ==
-                translation.get_language()[:2], specific_entries)
+                    translation.get_language()[:2], specific_entries)
             context['class_type'] = 'blogpage'
         else:
             context['class_type'] = 'mention'

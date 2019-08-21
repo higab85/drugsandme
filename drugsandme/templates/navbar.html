@@ -13,6 +13,14 @@
     <div class="collapse navbar-collapse my-2" id="navbarTogglerDemo02">
       <div class="navbar__right ml-auto">
         <ul class="navbar-nav mt-2 mt-lg-0">
+          {% blog_activated as blog_activated_v %}
+          {% if blog_activated_v %}
+            <li class="navbar-item nav-item">
+              <a class="nav-link" id="navbarBlogButton" role="button" href="{{ blog_activated_v.get_url }}">
+                Blog
+              </a>
+            </li>
+            {% endif %}
           <li class="navbar-item nav-item dropdown">
             <a href="javascript:;" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               info
@@ -27,7 +35,7 @@
             </div>
           </li>
           <li class="navbar-item nav-item dropdown">
-            <a href="javascript:;" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="javascript:;" class="nav-link dropdown-toggle" id="navbarDrugsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span style="color: #40AF81;">d</span><span style="color: #E97C39;">r</span><span style="color: #5898BB;">u</span><span style="color: #E48084;">g</span><span style="color: #C43830;">s</span>
             </a>
 
@@ -41,7 +49,7 @@
             </div>
           </li>
           <li class="navbar-item nav-item dropdown">
-            <a href="javascript:;" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="javascript:;" class="nav-link dropdown-toggle" id="navbarMeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Me
             </a>
 
@@ -55,10 +63,9 @@
             </div>
           </li>
           <li class="navbar-item nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarLanguageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Language
             </a>
-
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/en">English</a>
               <a class="dropdown-item" href="/es">Español</a>

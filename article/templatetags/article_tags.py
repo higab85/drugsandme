@@ -1,6 +1,7 @@
 from django import template
 from article.models import (Highlight, SocialMedia, FooterLink, ArticlePage,
                             ArticleConstants, Page)
+from blog.models import BlogIndexPage
 from django.utils.translation import get_language
 
 register = template.Library()
@@ -43,6 +44,13 @@ def footer_links():
 def all_pages():
     return filtered_articles()
 
+@register.simple_tag
+def blog_activated():
+    blogs = BlogIndexPage.objects.all()
+    blog = [x for x in blogs if x.title == "Blog"][0]
+    if is_live_or_not(blog):
+        return blog
+
 
 def filtered_articles(category=None):
     articles = list(ArticlePage.objects
@@ -55,6 +63,8 @@ def filtered_articles(category=None):
 
 def is_live_or_not(page):
     if page.specific_class == ArticlePage:
+        return page.live and page.specific.is_published
+    if page.specific_class == BlogIndexPage:
         return page.live and page.specific.is_published
     else:
         return page.live
