@@ -1,4 +1,4 @@
-{% load static article_tags %}
+{% load static article_tags i18n %}
 
 <!-- NAVBAR -->
   <nav id="navbar" class="navbar navbar-expand-lg navbar-light">
@@ -62,15 +62,21 @@
               {% endfor %}
             </div>
           </li>
-          <li class="navbar-item nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarLanguageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Language
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/en">English</a>
-              <a class="dropdown-item" href="/es">Español</a>
-            </div>
-          </li>
+          {% get_available_languages as LANGUAGES %}
+          {% if LANGUAGES|length > 1 %}
+            <li class="navbar-item nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarLanguageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Language
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for language in LANGUAGES %}
+                <a class="dropdown-item" href="/{{ language.0 }}">{{ language.1 }}</a>
+          
+                {% endfor %}
+                <!-- <a class="dropdown-item" href="/es">Español</a> -->
+              </div>
+            </li>
+          {% endif %}
         </ul>
         <form class="navbar-item search form-inline my-2 my-lg-0">
           <input class="search__input mr-sm-2" type="search" placeholder="Search">

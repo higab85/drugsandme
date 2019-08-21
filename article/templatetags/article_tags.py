@@ -107,3 +107,7 @@ def pdb(element):
 @register.filter
 def dir(thing):
     return thing.__dir__()
+
+@register.filter
+def length(arr):
+    return len(arr)

@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags article_tags %}
+
+{%  article_constants as constants %}
 
 {% block cover %}
   <div  id="cover" class="cover theme-bg">
@@ -35,16 +37,10 @@
 
     <div class="intro">{{ page.intro|richtext }}</div>
 
-    {{ page.body|richtext }}
+      {{ page.body|richtext }}
 
-    <p class="blog-post__return-button">
-      <a class="boxed blog-post__return-button__link" href="{{ page.get_parent.url }}">
-        {# TODO: make this translatable #}
-        Return to blog
-      </a>
-    </p>
-
-  </div>
+      {% include "article/sharing.html" %}
+    </div>
   </div>
   <div class="d-none d-lg-block col-md-3 article__sidebar article__elem d-print-none" role="complementary">
     {% include "article/sidebar.html" %}

@@ -16,7 +16,7 @@
     {% for highlight in  highs %}
     <li class="nav-item sidebar__list__item sidebar__highlights__item"
       style="background-color:{{ highlight.colour }}">
-      <a class="nav-link sidebar__list__item__link" href={{ highlight.link }}>
+      <a class="nav-link sidebar__list__item__link" href="{{ highlight.link }}">
         {{ highlight.name }}
       </a>
     </li>
