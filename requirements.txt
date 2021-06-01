@@ -43,7 +43,7 @@ toml==0.9.4
 tqdm==4.19.1
 troposphere==2.3.1
 Unidecode==0.4.21
-urllib3==1.23
+urllib3==1.26.5
 wagtail==2.4
 webencodings==0.5.1
 Werkzeug==0.14.1
