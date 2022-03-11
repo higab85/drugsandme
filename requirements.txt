@@ -27,7 +27,7 @@ jmespath==0.9.3
 kappa==0.6.0
 l18n==2016.6.4
 lambda-packages==0.20.0
-Pillow==5.2.0
+Pillow==9.0.1
 placebo==0.8.1
 psycopg2-binary==2.7.5
 python-dateutil==2.6.1
